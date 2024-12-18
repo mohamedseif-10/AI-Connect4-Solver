@@ -40,7 +40,9 @@ class ConnectFour:
         # Check diagonal (positive slope)
         for row in range(3, 6):
             for col in range(4):
-                if np.all([self.board[row - i, col + i] == player_id for i in range(4)]): #check if all the elements in the list which is part of diagonal are equal to player_id
+                if np.all(
+                    [self.board[row - i, col + i] == player_id for i in range(4)]
+                ):  # check if all the elements in the list which is part of diagonal are equal to player_id
                     return True
         #     0 1 2 3 4 5 6
         #   -----------------
@@ -55,24 +57,26 @@ class ConnectFour:
         # Check diagonal (negative slope)
         for row in range(3):
             for col in range(4):
-                if np.all([self.board[row + i, col + i] == player_id for i in range(4)]):
+                if np.all(
+                    [self.board[row + i, col + i] == player_id for i in range(4)]
+                ):
                     return True
 
         return False
 
-    def available_moves(self): # return the available columns to play
+    def available_moves(self):  # return the available columns to play
         return [col for col in range(7) if self.board[0][col] == 0]
 
     def Save_game(self, winner=None):
         with open(self.log_file_path, "a") as file:
-            file.write("Final Game State:\n")
-            file.write(str(self.board))
-            file.write("\n")
-            file.write("-" * 30 + "\n")
             if winner:
                 file.write(f"Winner: Player {winner}\n")
             else:
                 file.write("It's a draw!\n")
+            file.write("Final Game State:\n")
+            file.write(str(self.board))
+            file.write("\n")
+            file.write("-" * 30 + "\n")
 
     # Utility: Print the current game board
     def print_board(self):
@@ -107,7 +111,6 @@ while not game_over:
 
     if game.check_winner(player_turn):
         game.print_board()
-        print(f"Player {player_turn} wins!")
         game.Save_game(winner=player_turn)
         game_over = True
     elif not game.available_moves():
@@ -116,7 +119,7 @@ while not game_over:
         game.Save_game(winner=None)
         game_over = True
     else:
-        player_turn = 3 - player_turn 
+        player_turn = 3 - player_turn
         # Switch between player 1 and 2
 
 print("Game over. Log file saved.")
