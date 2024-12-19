@@ -21,7 +21,18 @@ AI_PIECE = 2
 
 WINDOW_LENGTH = 4
 
+def get_level_of_difficulty():
+    level_of_difficulty = int(input("Choose level of difficulty between 1 : 5 "))
+    
+    if level_of_difficulty >= 1 and level_of_difficulty <= 5:
+        return level_of_difficulty
+    
+    else:
+        print("Invalid option")
+        sys.exit()
 
+
+level_of_difficulty = get_level_of_difficulty()
 
 def create_board():
 	board = np.zeros((ROW_COUNT,COLUMN_COUNT))
@@ -117,3 +128,5 @@ pygame.display.update()
 myfont = pygame.font.SysFont("monospace", 75)
 
 turn = random.randint(PLAYER, AI)
+
+

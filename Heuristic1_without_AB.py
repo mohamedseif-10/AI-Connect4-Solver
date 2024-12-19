@@ -142,7 +142,7 @@ while not game_over:
 	# # Ask for Player 2 Input
 	if turn == AI and not game_over:				
 
-		col, minimax_score = minimax(board, 5, True) # will cause a delay because no Alpha and Beta
+		col, minimax_score = minimax(board, level_of_difficulty, True) # will cause a delay because no Alpha and Beta
 
 		if is_valid_location(board, col):
 			# pygame.time.wait(500)
@@ -161,4 +161,6 @@ while not game_over:
 			turn = turn % 2
 
 	if game_over:
-		pygame.time.wait(3000)
+		pygame.time.wait(2000)
+		print("Heuristic1 without Alpha & Beta")
+		print(f"Level of difficulty = {level_of_difficulty}")
