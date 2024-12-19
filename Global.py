@@ -4,10 +4,10 @@ import pygame
 import sys
 import math
 
-BLUE = (0,0,255)
-BLACK = (0,0,0)
-RED = (255,0,0)
-YELLOW = (255,255,0)
+Gray = (128, 128, 128)
+Black = (0, 0, 0)
+Mint_green = (8, 255, 8)
+Purple = (160, 32, 240)
 
 ROW_COUNT = 6
 COLUMN_COUNT = 7
@@ -79,8 +79,7 @@ def winning_move(board, piece):
 
 
 def is_terminal_node(board):
-	return winning_move(board, PLAYER_PIECE) or winning_move(board, AI_PIECE) or len(get_valid_locations(board)) == 0
-
+    return winning_move(board, PLAYER_PIECE) or winning_move(board, AI_PIECE) or len(get_valid_locations(board)) == 0
 
 
 def get_valid_locations(board):
@@ -91,19 +90,46 @@ def get_valid_locations(board):
 	return valid_locations
 
 def draw_board(board):
-	for c in range(COLUMN_COUNT):
-		for r in range(ROW_COUNT):
-			pygame.draw.rect(screen, BLUE, (c*SQUARESIZE, r*SQUARESIZE+SQUARESIZE, SQUARESIZE, SQUARESIZE))
-			pygame.draw.circle(screen, BLACK, (int(c*SQUARESIZE+SQUARESIZE/2), int(r*SQUARESIZE+SQUARESIZE+SQUARESIZE/2)), RADIUS)
-	
-	for c in range(COLUMN_COUNT):
-		for r in range(ROW_COUNT):		
-			if board[r][c] == PLAYER_PIECE:
-				pygame.draw.circle(screen, RED, (int(c*SQUARESIZE+SQUARESIZE/2), height-int(r*SQUARESIZE+SQUARESIZE/2)), RADIUS)
-			elif board[r][c] == AI_PIECE: 
-				pygame.draw.circle(screen, YELLOW, (int(c*SQUARESIZE+SQUARESIZE/2), height-int(r*SQUARESIZE+SQUARESIZE/2)), RADIUS)
-	pygame.display.update()
-	
+    for c in range(COLUMN_COUNT):
+        for r in range(ROW_COUNT):
+            pygame.draw.rect(
+                screen,
+                Gray,
+                (c * SQUARESIZE, r * SQUARESIZE + SQUARESIZE, SQUARESIZE, SQUARESIZE),
+            )
+            pygame.draw.circle(
+                screen,
+                Black,
+                (
+                    int(c * SQUARESIZE + SQUARESIZE / 2),
+                    int(r * SQUARESIZE + SQUARESIZE + SQUARESIZE / 2),
+                ),
+                RADIUS,
+            )
+
+    for c in range(COLUMN_COUNT):
+        for r in range(ROW_COUNT):
+            if board[r][c] == PLAYER_PIECE:
+                pygame.draw.circle(
+                    screen,
+                    Mint_green,
+                    (
+                        int(c * SQUARESIZE + SQUARESIZE / 2),
+                        height - int(r * SQUARESIZE + SQUARESIZE / 2),
+                    ),
+                    RADIUS,
+                )
+            elif board[r][c] == AI_PIECE:
+                pygame.draw.circle(
+                    screen,
+                    Purple,
+                    (
+                        int(c * SQUARESIZE + SQUARESIZE / 2),
+                        height - int(r * SQUARESIZE + SQUARESIZE / 2),
+                    ),
+                    RADIUS,
+                )
+    pygame.display.update()
 
 
 board = create_board()
@@ -128,5 +154,3 @@ pygame.display.update()
 myfont = pygame.font.SysFont("monospace", 75)
 
 turn = random.randint(PLAYER, AI)
-
-

@@ -1,4 +1,3 @@
-
 ai_or_player = input(
 """
 Welcome to our < Connect Four Game > :)
@@ -10,7 +9,7 @@ Choose between 1 : 2
 # level_of_difficulty = 2
 
 if ai_or_player == '1':
-    choise = input(
+    choice = input(
                     '''
 Choose between 1 : 4
 1 => Heuristic1 with Alpha & Beta,
@@ -20,16 +19,16 @@ Choose between 1 : 4
 ''')
     
         
-    if choise == '1':
+    if choice == '1':
         import Heuristic1_with_AB
 
-    elif choise == '2':
+    elif choice == '2':
         import Heuristic1_without_AB
 
-    elif choise == '3':
+    elif choice == '3':
         import Heuristic2_with_AB
 
-    elif choise == '4':
+    elif choice == '4':
         import Heuristic2_without_AB
 
     else:
